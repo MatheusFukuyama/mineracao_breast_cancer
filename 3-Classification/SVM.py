@@ -10,6 +10,7 @@ from sklearn.metrics import f1_score
 from sklearn.metrics import confusion_matrix
 from sklearn import datasets
 from sklearn.svm import SVC
+from imblearn.over_sampling import RandomOverSampler, SMOTE
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
@@ -66,15 +67,36 @@ def load_dataset(dataset='cancer'):
 
 def main():
     #load dataset
-    target_names, df = load_dataset('iris')
+    names = ['Class', 'age', 'menopause', 'tumor-size', 'inv-nodes', 'node-caps', 'deg-malig', 'breast', 'breast-quad',
+             'irradiat']
+    features = ['age', 'menopause', 'tumor-size', 'inv-nodes', 'node-caps', 'deg-malig', 'breast',
+                'breast-quad', 'irradiat']
+    target = 'Class'
+    input_file = '0-Datasets/br-out.data'
+    df = pd.read_csv(input_file,  # Nome do arquivo com dados
+                     names=names)
 
-    # Separate X and y data
-    X = df.drop('target', axis=1)
-    y = df.target   
-    print("Total samples: {}".format(X.shape[0]))
+    teste, target_names = pd.factorize(df.loc[:, target].values)
 
-    # Split the data - 75% train, 25% test
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=1)
+    # identify all categorical variables
+    cat_columns = df.select_dtypes(['object']).columns
+
+    # convert all categorical variables to numeric
+    df[cat_columns] = df[cat_columns].apply(lambda x: pd.factorize(x)[0])
+
+    # Separating out the features
+    x = df.loc[:, features].values
+
+    # Separating out the target
+    y = df.loc[:, target].values
+    print("Total samples: {}".format(x.shape[0]))
+
+    smote = SMOTE(random_state = 32)
+    x, y = smote.fit_resample(x, y) 
+
+
+    # Split the data - 70% train, 30% test
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=1)
     print("Total train samples: {}".format(X_train.shape[0]))
     print("Total test  samples: {}".format(X_test.shape[0]))
 

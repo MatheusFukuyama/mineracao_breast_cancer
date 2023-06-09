@@ -40,7 +40,7 @@ def main():
 
     print('Original dataset shape %s' % Counter(y))
 
-    SMOTE
+    # SMOTE
     smote = SMOTE(random_state = 32)
     x_smote_res, y_smote_res = smote.fit_resample(x, y) 
 

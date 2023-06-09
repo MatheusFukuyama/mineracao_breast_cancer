@@ -11,6 +11,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn import datasets
 from sklearn.neighbors import KNeighborsClassifier
 from collections import Counter
+from imblearn.over_sampling import RandomOverSampler, SMOTE
 
 # Calculate distance between two points
 def minkowski_distance(a, b, p=1):
@@ -122,6 +123,8 @@ def main():
     y = df.loc[:, target]
 
     # print(y)
+    smote = SMOTE(random_state = 32)
+    x, y = smote.fit_resample(x, y) 
 
     # Split the data - 75% train, 25% test
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=1)
