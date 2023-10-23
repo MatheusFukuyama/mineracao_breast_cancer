@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def main():
     # Faz a leitura do arquivo
     names = ['Class','age','menopause','tumor-size','inv-nodes','node-caps','deg-malig','breast','breast-quad','irradiat'] 
-    features =  ['Class','age','menopause','tumor-size','inv-nodes','node-caps','deg-malig','breast','breast-quad','irradiat'] 
+    features =  ['age','menopause','tumor-size','inv-nodes','node-caps','deg-malig','breast','breast-quad','irradiat'] 
     target = 'Class'
     input_file = '../0-Datasets/br-out.data'
     output_file = '../0-Datasets/reductionFile.data'
