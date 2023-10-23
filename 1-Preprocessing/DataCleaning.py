@@ -4,7 +4,7 @@ import numpy as np
 def main():
     # Faz a leitura do arquivo
     names = ['Class','age','menopause','tumor-size','inv-nodes','node-caps','deg-malig','breast','breast-quad','irradiat'] 
-    features =  ['Class','age','menopause','tumor-size','inv-nodes','node-caps','deg-malig','breast','breast-quad','irradiat'] 
+    features =  ['age','menopause','tumor-size','inv-nodes','node-caps','deg-malig','breast','breast-quad','irradiat'] 
     output_file = '../0-Datasets/br-out.data'
     input_file = '../0-Datasets/breast-cancer.data'
     df = pd.read_csv(input_file,         # Nome do arquivo com dados
