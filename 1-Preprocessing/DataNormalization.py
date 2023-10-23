@@ -19,9 +19,6 @@ def main():
     #identify all categorical variables
     cat_columns = df.select_dtypes(['object']).columns
 
-    # a = df.sort_values(by=['age'])
-    # a[cat_columns] = a[cat_columns].apply(lambda x: print(pd.factorize(x)[1]))
-
     # ShowInformationDataFrame(a,"Dataframe ordenado")
 
     # convert all categorical variables to numeric
