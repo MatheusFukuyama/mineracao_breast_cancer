@@ -12,7 +12,7 @@ def main():
     input_file = '../0-Datasets/br-out.data'
     output_file = '../0-Datasets/normalizedFile.data'
     df = pd.read_csv(input_file,         # Nome do arquivo com dados
-                    names = names)      # Define que ? será considerado valores ausentes
+                    names = names)      
    # Nome das colunas                      
     ShowInformationDataFrame(df,"Dataframe original")
 
